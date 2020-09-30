@@ -1,70 +1,17 @@
-import React, { Component } from "react";
-import quizQuestions from "../src/api/quiz";
-import QuizCheck from "../src/components/question/question";
+import React from "react";
+// import App from "./imageScroll";
+import useTimer from "./useTimer";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      questionId: 1,
-      question: "",
-      answerOptions: [],
-      answer: "",
-      answersCount: {}
-    };
-
-    this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
-  }
-
-  componentDidMount() {
-    const selectedAnswerOptions = quizQuestions.map(
-      question => question.answers
-    );
-    this.setState({
-      question: quizQuestions[0].question,
-      answerOptions: selectedAnswerOptions[0]
-    });
-  }
-
-  handleAnswerSelected(event) {
-    this.setUserAnswer(event.currentTarget.value);
-
-    if (this.state.questionId < quizQuestions.length) {
-      setTimeout(() => 300);
-    }
-  }
-
-  setUserAnswer(answer) {
-    this.setState(state => ({
-      answersCount: {
-        ...state.answersCount,
-        [answer]: (state.answersCount[answer] || 0) + 1
-      },
-      answer: answer
-    }));
-  }
-
-  renderQuiz() {
-    return (
-      <QuizCheck
-        answer={this.state.answer}
-        answerOptions={this.state.answerOptions}
-        questionId={this.state.questionId}
-        question={this.state.question}
-        onAnswerSelected={this.handleAnswerSelected}
-      />
-    );
-  }
-
-  render() {
-    return (
-      <div className="quiz">
-        <div className="quiz-header" />
-        {this.renderQuiz()}
-      </div>
-    );
-  }
+function App() {
+  const startDateTime = new Date(2020, 8, 30, 12, 57, 59, 0); // YYYY (M-1) D H m s ms (start time and date from DB)
+  const time = useTimer(startDateTime);
+  const startDateTime2 = new Date("2020-09-29T13:42:44.108Z"); // YYYY (M-1) D H m s ms (start time and date from DB)
+  const time2 = useTimer(startDateTime2);
+  return (
+    <div>
+      {time} <br /> {time2}
+    </div>
+  );
 }
 
 export default App;

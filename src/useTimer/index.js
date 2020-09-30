@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-function CountUpTimer(props) {
-  const startDateTime = new Date(2020, 8, 30, 12, 57, 59, 0); // YYYY (M-1) D H m s ms (start time and date from DB)
-  const startStamp = startDateTime.getTime();
-
+function useTimer(startDateTime) {
   const [time, setTime] = useState("");
 
   useEffect(() => {
     function updateClock() {
+      const startStamp = startDateTime.getTime();
       const newDate = new Date();
       const newStamp = newDate.getTime();
       let diff = Math.round((newStamp - startStamp) / 1000);
@@ -30,9 +28,9 @@ function CountUpTimer(props) {
     const timer = setInterval(updateClock, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [startDateTime]);
 
-  return <div>{time}</div>;
+  return time;
 }
 
-export default CountUpTimer;
+export default useTimer;
