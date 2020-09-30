@@ -1,0 +1,14 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.scrollView {
+  height: 30px;
+  width: 30px;
+  font-size: 24px;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid gray;
+}
