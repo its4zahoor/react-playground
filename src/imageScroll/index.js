@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const images = ["a", "b", "c", "d", "e", "f", "g", "h", "i"];
-
 const selected = {
   backgroundColor: "gray",
   color: "red",
 };
 
-function ImageScroll() {
+function ImageScroll({ images }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [scrollView, setScrollView] = useState([]);
   const selectedRef = useRef(null);
@@ -20,7 +18,7 @@ function ImageScroll() {
       return images.slice(currentIndex - 1, currentIndex + 2);
     };
     if (!selectedRef.current) setScrollView(getScrollView());
-  }, [currentIndex]);
+  }, [images, currentIndex]);
 
   const onNext = () => {
     selectedRef.current = null;
@@ -47,6 +45,7 @@ function ImageScroll() {
       <button onClick={onBack}>&lt;</button>
       {scrollView.map((x) => (
         <div
+          key={x}
           className="scrollView"
           style={images[currentIndex] === x ? selected : null}
           onClick={(_) => handleSelected(_, x)}

@@ -1,7 +1,8 @@
 import React from "react";
-// import App from "./imageScroll";
+import ImageScroll from "./imageScroll";
 import useTimer from "./useTimer";
 
+const images = ["a", "b", "c", "d", "e", "f", "g", "h", "i"];
 function App() {
   const startDateTime = new Date(2020, 8, 30, 12, 57, 59, 0); // YYYY (M-1) D H m s ms (start time and date from DB)
   const time = useTimer(startDateTime);
@@ -9,7 +10,12 @@ function App() {
   const time2 = useTimer(startDateTime2);
   return (
     <div>
-      {time} <br /> {time2}
+      <div>
+        {time} <br /> {time2}
+      </div>
+      <div>
+        <ImageScroll images={images} windowSize={3} />
+      </div>
     </div>
   );
 }
