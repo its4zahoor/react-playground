@@ -1,0 +1,33 @@
+p {
+  font-size: 600%;
+  font-weight: 900;
+}
+
+.shadow-animate {
+  color: yellow;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7), 5px 5px 1px orange,
+    6px 6px 2px rgba(0, 0, 0, 0.7), 10px 10px 1px red,
+    11px 11px 2px rgba(0, 0, 0, 0.7), 15px 15px 1px purple,
+    16px 16px 2px rgba(0, 0, 0, 0.7);
+  -webkit-animation: text-snake 1s infinite alternate;
+  -moz-animation: text-snake 1s infinite alternate;
+  -ms-animation: text-snake 1s infinite alternate;
+  animation: text-snake 1s infinite alternate;
+}
+
+/* other prefixed animation blocks ommitted for brevity */
+
+@keyframes text-snake {
+  from {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7), 5px 5px 1px orange,
+      6px 6px 2px rgba(0, 0, 0, 0.7), 10px 10px 1px red,
+      11px 11px 2px rgba(0, 0, 0, 0.7), 15px 15px 1px purple,
+      16px 16px 2px rgba(0, 0, 0, 0.7);
+  }
+  to {
+    text-shadow: -1px 1px 2px rgba(0, 0, 0, 0.7), -5px 5px 1px orange,
+      -6px 6px 2px rgba(0, 0, 0, 0.7), -10px 10px 1px red,
+      -11px 11px 2px rgba(0, 0, 0, 0.7), -15px 15px 1px purple,
+      -16px 16px 2px rgba(0, 0, 0, 0.7);
+  }
+}
