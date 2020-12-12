@@ -6,3 +6,4 @@ package-lock.json
 *-lock.json
 dist/
 build/
+.eslintcache
