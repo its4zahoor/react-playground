@@ -1,6 +1,8 @@
-p {
+.shadow-animate p {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 600%;
   font-weight: 900;
+  text-align: center;
 }
 
 .shadow-animate {
