@@ -1,6 +1,7 @@
 import React from "react";
 import ImageScroll from "./imageScroll";
 import TextShadow from "./text/textShadow";
+import Lists from "./lists";
 import useTimer from "./useTimer";
 
 const images = ["a", "b", "c", "d", "e", "f", "g", "h", "i"];
@@ -14,9 +15,8 @@ function App() {
       <div>
         {time} <br /> {time2}
       </div>
-      <div>
-        <ImageScroll images={images} windowSize={3} />
-      </div>
+      <ImageScroll images={images} windowSize={3} />
+      <Lists />
       <TextShadow />
     </div>
   );

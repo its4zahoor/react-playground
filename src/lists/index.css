@@ -1,0 +1,18 @@
+p {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+ul {
+  padding-left: 2rem;
+  list-style-type: none;
+}
+
+ul li {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding-left: 2rem;
+  background-image: url("https://icons.iconarchive.com/icons/iconsmind/outline/24/Right-2-icon.png");
+  background-position: 0 0;
+  background-size: 1.25rem 1.25rem;
+  background-repeat: no-repeat;
+}
