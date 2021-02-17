@@ -1,0 +1,22 @@
+{
+  "name": "@bit/its4zahoor.bit-react-tutorial.product-list",
+  "version": "0.0.1",
+  "homepage": "https://bit.dev/its4zahoor/bit-react-tutorial/product-list",
+  "main": "dist/index.js",
+  "componentId": {
+    "scope": "its4zahoor.bit-react-tutorial",
+    "name": "product-list",
+    "version": "0.0.1"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {
+    "react": "^16.8.6"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "bit": {
+    "env": {
+      "compiler": "bit.envs/compilers/react@2.0.0"
+    }
+  }
+}
