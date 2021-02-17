@@ -1,5 +1,7 @@
 .App {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  flex-direction: column;
+  margin: 20px;
 }
 
 .scrollView {
