@@ -6,7 +6,8 @@
   "main": "src/index.js",
   "dependencies": {
     "@bit/its4zahoor.bit-react-tutorial.product-list": "file:./components/product-list",
-    "@material-ui/core": "^4.11.0",
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/lab": "^4.0.0-alpha.57",
     "bootstrap": "^4.5.2",
     "ramda": "^0.27.1",
     "react": "^17.0.1",
