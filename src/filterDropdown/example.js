@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import "./styles.css";
-import SearchBox from "./SearchBox";
+import FilterDropdown from "./";
 import axios from "axios";
 
 const complexOptions = [
@@ -14,8 +13,6 @@ export default function App() {
   const [name, setName] = useState("");
   const [album, setAlbum] = useState("");
   const [complex, setComplex] = useState("");
-
-  console.log("complex log 20: ", complex);
 
   const getUsersList = () => {
     return axios
@@ -51,7 +48,7 @@ export default function App() {
 
   return (
     <div className="p-2">
-      <SearchBox
+      <FilterDropdown
         label="Full Name"
         value={name}
         sourceFunc={getUsersList}
@@ -59,17 +56,17 @@ export default function App() {
         placeholder="Select User"
       />
 
-      <SearchBox
+      <FilterDropdown
         label="Album Name"
         value={album}
         sourceFunc={getAlbumsList}
         onSelect={handleAlbumSelect}
-        allowTextInput
+        allowInput
         placeholder="Select Album or Add new"
         size="small"
       />
 
-      <SearchBox
+      <FilterDropdown
         label="Complex Options"
         value={complex}
         sourceFunc={getComplexOptions}
