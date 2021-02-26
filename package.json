@@ -8,11 +8,13 @@
     "@bit/its4zahoor.bit-react-tutorial.product-list": "file:./components/product-list",
     "@material-ui/core": "^4.11.3",
     "@material-ui/lab": "^4.0.0-alpha.57",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.2",
     "ramda": "^0.27.1",
     "react": "^17.0.1",
     "react-bootstrap": "1.0.1",
     "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1"
   },
   "devDependencies": {
