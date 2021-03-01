@@ -3,50 +3,56 @@ import { TextField } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 function SearchBox({
-  value,
-  sourceFunc,
-  disabled,
   label,
+  value,
+  source,
   onSelect,
+  allowInput,
   placeholder,
-  allowTextInput,
   error,
-  errorText,
+  helperText,
   ...rest
 }) {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    sourceFunc().then((result) => setOptions(result));
-  }, [sourceFunc]);
+    if (options.length === 0) {
+      if (Array.isArray(source)) setOptions(source);
+      if (typeof source === "function")
+        source().then((list) => setOptions(list));
+    }
+  }, [source]);
+
+  const handleInputChange = (_, inputValue, reason) => {
+    onSelect(inputValue, reason);
+  };
+
+  const handleChange = (_, value, reason) => {
+    onSelect(value, reason);
+  };
 
   return (
-    <div className="p-1">
-      <Autocomplete
-        id="rafay-select"
-        fullWidth
-        freeSolo={allowTextInput}
-        disableListWrap
-        inputValue={value?.value || value}
-        disabled={disabled}
-        options={options}
-        getOptionLabel={(option) => option?.label || option}
-        onInputChange={onSelect}
-        onChange={onSelect}
-        {...rest}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label={label}
-            size="small"
-            variant="outlined"
-            placeholder={placeholder}
-            error={error}
-            helperText={errorText}
-          />
-        )}
-      />
-    </div>
+    <Autocomplete
+      {...rest}
+      fullWidth
+      freeSolo={allowInput}
+      inputValue={value?.label || value}
+      options={options}
+      getOptionLabel={(option) => option?.label || option}
+      onInputChange={handleInputChange}
+      onChange={handleChange}
+      renderInput={(params) => (
+        <TextField
+          {...rest}
+          {...params}
+          label={label}
+          value={value?.value || value}
+          placeholder={placeholder}
+          error={error}
+          helperText={helperText}
+        />
+      )}
+    />
   );
 }
 

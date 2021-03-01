@@ -32,17 +32,16 @@ export default function App() {
       });
   };
 
-  const getComplexOptions = () => Promise.resolve(complexOptions);
-
-  const handleNameSelect = (_e, value) => {
+  const handleNameSelect = (value) => {
     setName(value || "");
   };
 
-  const handleAlbumSelect = (_e, value) => {
+  const handleAlbumSelect = (value) => {
     setAlbum(value || "");
   };
 
-  const handleComplexSelect = (_e, value) => {
+  const handleComplexSelect = (value) => {
+    console.log("LogByZahoor => handleComplexSelect => value", value);
     setComplex(value || "");
   };
 
@@ -51,7 +50,8 @@ export default function App() {
       <FilterDropdown
         label="Full Name"
         value={name}
-        sourceFunc={getUsersList}
+        source={getUsersList}
+        allowInput
         onSelect={handleNameSelect}
         placeholder="Select User"
       />
@@ -59,20 +59,20 @@ export default function App() {
       <FilterDropdown
         label="Album Name"
         value={album}
-        sourceFunc={getAlbumsList}
+        source={getAlbumsList}
         onSelect={handleAlbumSelect}
-        allowInput
         placeholder="Select Album or Add new"
+        variant="outlined"
         size="small"
       />
 
       <FilterDropdown
         label="Complex Options"
         value={complex}
-        sourceFunc={getComplexOptions}
+        source={complexOptions}
         onSelect={handleComplexSelect}
         error
-        errorText="Error is for demonstration"
+        helperText="Error is for demonstration"
         placeholder="Select Option"
       />
 
