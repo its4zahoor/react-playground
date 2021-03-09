@@ -14,6 +14,7 @@ function SearchBox({
   ...rest
 }) {
   const [options, setOptions] = useState([]);
+  const [inputText, setInputText] = useState("");
 
   useEffect(() => {
     if (options.length === 0) {
@@ -23,8 +24,12 @@ function SearchBox({
     }
   }, [source]);
 
-  const handleInputChange = (_, inputValue, reason) => {
-    onSelect(inputValue, reason);
+  useEffect(() => {
+    setInputText(value?.label ?? value);
+  }, [value]);
+
+  const handleInputChange = (_, inputValue) => {
+    setInputText(inputValue);
   };
 
   const handleChange = (_, value, reason) => {
@@ -36,9 +41,9 @@ function SearchBox({
       {...rest}
       fullWidth
       freeSolo={allowInput}
-      inputValue={value?.label || value}
+      inputValue={inputText}
       options={options}
-      getOptionLabel={(option) => option?.label || option}
+      getOptionLabel={(option) => option?.label ?? option}
       onInputChange={handleInputChange}
       onChange={handleChange}
       renderInput={(params) => (
@@ -46,7 +51,7 @@ function SearchBox({
           {...rest}
           {...params}
           label={label}
-          value={value?.value || value}
+          value={value?.value ?? value}
           placeholder={placeholder}
           error={error}
           helperText={helperText}
