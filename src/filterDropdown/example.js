@@ -2,17 +2,28 @@ import React, { useState } from "react";
 import FilterDropdown from "./";
 import axios from "axios";
 
+const payload = {
+  id: 1,
+  name: "Zahoor",
+  type: "xyz",
+};
+
 const complexOptions = [
-  { label: "Option 1", value: "value_1" },
-  { label: "Option 2", value: "value_2" },
-  { label: "Option 3", value: "value_3" },
-  { label: "Option 4", value: "value_4" },
+  { label: "Abeer", value: "value_1", meta: payload },
+  { label: "Nazir", value: "value_2", meta: payload },
+  { label: "Mehran", value: "value_3", meta: payload },
+  { label: "Rizwan", value: "value_4", meta: payload },
+  { label: "Nabeel", value: "value_5", meta: payload },
+  { label: "Yasir", value: "value_6", meta: payload },
+  { label: "Saqib", value: "value_7", meta: payload },
+  { label: "NNNNN", value: "value_n", meta: payload },
 ];
 
 export default function App() {
   const [name, setName] = useState("");
   const [album, setAlbum] = useState("");
   const [complex, setComplex] = useState("");
+  const [array, setArray] = useState([]);
 
   const getUsersList = () => {
     return axios
@@ -40,9 +51,13 @@ export default function App() {
     setAlbum(value || "");
   };
 
-  const handleComplexSelect = (value) => {
+  const handleComplexSelect = (index) => (value, reason) => {
     console.log("LogByZahoor => handleComplexSelect => value", value);
-    setComplex(value || "");
+    if (reason === "create-option")
+      complexOptions.push({ label: value, value });
+    const temp = [...array];
+    temp[index] = value;
+    setArray(temp);
   };
 
   return (
@@ -54,6 +69,8 @@ export default function App() {
         allowInput
         onSelect={handleNameSelect}
         placeholder="Select User"
+        error
+        helperText="Error is for demonstration"
       />
 
       <FilterDropdown
@@ -65,21 +82,25 @@ export default function App() {
         variant="outlined"
         size="small"
       />
-
-      <FilterDropdown
-        label="Complex Options"
-        value={complex}
-        source={complexOptions}
-        onSelect={handleComplexSelect}
-        error
-        helperText="Error is for demonstration"
-        placeholder="Select Option"
-      />
+      {array.map((x, index) => (
+        <FilterDropdown
+          key={x.label + index}
+          label="Complex Options"
+          value={x}
+          source={complexOptions}
+          onSelect={handleComplexSelect(index)}
+          placeholder="Select Option"
+        />
+      ))}
 
       <div className="text-center m-2">Selected Name: {name}</div>
       <div className="text-center m-2">Selected Album: {album}</div>
       <div className="text-center m-2">
-        Selected Complex: {JSON.stringify(complex, null, 2)}
+        Selected Complex: {JSON.stringify(array, null, 2)}
+      </div>
+
+      <div>
+        <button onClick={() => setArray([...array, ""])}>Add More</button>
       </div>
     </div>
   );
