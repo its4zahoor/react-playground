@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { TextField } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
-function SearchBox({
+const defaultState = { label: "--Select--", value: null };
+
+function RafaySelect({
   value,
   source,
   label,
@@ -24,16 +26,12 @@ function SearchBox({
     }
   }, [source]);
 
-  useEffect(() => {
-    setInputText(value?.label ?? value);
-  }, [value]);
-
-  const handleInputChange = (_, inputValue) => {
-    setInputText(inputValue);
+  const handleInputChange = (_, inputValue, reason) => {
+    onSelect(inputValue || "");
   };
 
   const handleChange = (_, value, reason) => {
-    onSelect(value, reason);
+    onSelect(value || "");
   };
 
   return (
@@ -42,8 +40,9 @@ function SearchBox({
       fullWidth
       freeSolo={allowInput}
       inputValue={inputText}
+      value={value}
       options={options}
-      getOptionLabel={(option) => option?.label ?? option}
+      getOptionLabel={(option) => option.label ?? option}
       onInputChange={handleInputChange}
       onChange={handleChange}
       renderInput={(params) => (
@@ -51,7 +50,6 @@ function SearchBox({
           {...rest}
           {...params}
           label={label}
-          value={value?.value ?? value}
           placeholder={placeholder}
           error={error}
           helperText={helperText}
@@ -61,4 +59,4 @@ function SearchBox({
   );
 }
 
-export default SearchBox;
+export default RafaySelect;

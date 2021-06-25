@@ -36,7 +36,7 @@ function ImageScroll({ images }) {
   };
 
   return (
-    <div style={{ width: 300 }}>
+    <div style={{ width: 300, fontSize: 24 }}>
       {images.map((x, index) => (
         <div key={index} style={index === currentIndex ? selected : null}>
           {x}

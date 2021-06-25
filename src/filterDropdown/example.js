@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FilterDropdown from "./";
+import RafaySelect from "./RafaySelect";
 import axios from "axios";
 
 const payload = {
@@ -18,12 +18,19 @@ const complexOptions = [
   { label: "Saqib", value: "value_7", meta: payload },
   { label: "NNNNN", value: "value_n", meta: payload },
 ];
+const arrayofStrings = ["alpha", "beta", "gamma", "yeta"];
 
+const arrayofObj = [
+  { label: "A L P H A", value: "alpha" },
+  { label: "B E T A", value: "beta" },
+  { label: "G A M M A", value: "gamma" },
+  { label: "Y E T A ", value: "yeta" },
+];
 export default function App() {
   const [name, setName] = useState("");
-  const [album, setAlbum] = useState("");
-  const [complex, setComplex] = useState("");
-  const [array, setArray] = useState([]);
+  const [album, setAlbum] = useState("gamma");
+  const [complex, setComplex] = useState("gamma");
+  const [array, setArray] = useState("gamma");
 
   const getUsersList = () => {
     return axios
@@ -62,7 +69,7 @@ export default function App() {
 
   return (
     <div className="p-2">
-      <FilterDropdown
+      {/* <RafaySelect
         label="Full Name"
         value={name}
         source={getUsersList}
@@ -73,7 +80,7 @@ export default function App() {
         helperText="Error is for demonstration"
       />
 
-      <FilterDropdown
+      <RafaySelect
         label="Album Name"
         value={album}
         source={getAlbumsList}
@@ -81,17 +88,29 @@ export default function App() {
         placeholder="Select Album or Add new"
         variant="outlined"
         size="small"
+      /> */}
+
+      <RafaySelect
+        label="Album Name"
+        value={album}
+        source={arrayofStrings}
+        onSelect={handleAlbumSelect}
+        placeholder="Select Album or Add new"
+        variant="outlined"
+        size="small"
       />
-      {array.map((x, index) => (
-        <FilterDropdown
-          key={x.label + index}
-          label="Complex Options"
-          value={x}
-          source={complexOptions}
-          onSelect={handleComplexSelect(index)}
-          placeholder="Select Option"
-        />
-      ))}
+
+      <div style={{ height: 50 }}>..</div>
+      {/* 
+      <RafaySelect
+        label="Album Name"
+        value={album}
+        source={arrayofObj}
+        onSelect={handleAlbumSelect}
+        placeholder="Select Album or Add new"
+        variant="outlined"
+        size="small"
+      /> */}
 
       <div className="text-center m-2">Selected Name: {name}</div>
       <div className="text-center m-2">Selected Album: {album}</div>
